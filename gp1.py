@@ -80,3 +80,25 @@ class GP_Practice:
             print("Patient record updated.")
         else:
             print("Patient ID not found.")
+
+    def delete_patient(self, patient_id):
+        if patient_id in self.patients:
+            del self.patients[patient_id]
+            print("Patient record deleted.")
+        else:
+            print("Patient ID not found.")
+
+    #
+
+    def main():
+
+        while True:
+            print("\n---Patient Management System in GP ---")
+            print("1. Add Patient")
+            print("2. View All Patients")
+            print("3. Search Patient by ID")
+            print("4. Search Patient by Name")
+            print("5. Update Patient")
+            print("6. Delete Patient")
+            print("7. Number Of Patients Admitted")
+            print("8. Exit")
