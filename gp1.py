@@ -139,4 +139,26 @@ class GP_Practice:
             elif choice == "4":
                 name = input("Enter Patient Name: ")
                 gppractice.search_patient_by_name(name)
-                
+
+            elif choice == "5":
+                pid = input("Enter Patient ID to update: ")
+                print("Leave field blank if no change is needed.")
+                name = input("New Name: ")
+                age = input("New Age: ")
+                gender = input("New Gender: ")
+                diagnosis = input("New Diagnosis: ")
+                gppractice.update_patient(
+                    pid,
+                    name or None,
+                    age or None,
+                    gender or None,
+                    diagnosis or None
+                )
+
+            elif choice == "6":
+                pid = input("Enter Patient ID to delete: ")
+                gppractice.delete_patient(pid)
+
+            elif choice == "7":
+                gppractice.view_count = len(gppractice.patients)
+                print(f"Number of patients admitted: {gppractice.view_count}")
