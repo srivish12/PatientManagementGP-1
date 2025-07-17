@@ -88,9 +88,17 @@ class GP_Practice:
         else:
             print("Patient ID not found.")
 
-    #
+    def get_gender_input():
+        gender = input("Gender (male/female): ").strip().lower()
+        if gender in ["male", "m"]:
+            return "male"
+        elif gender in ["female", "f"]:
+            return "female"
+        else:
+            return "invalid value"
 
     def main():
+        gppractice = GP_Practice()
 
         while True:
             print("\n---Patient Management System in GP ---")
@@ -102,3 +110,33 @@ class GP_Practice:
             print("6. Delete Patient")
             print("7. Number Of Patients Admitted")
             print("8. Exit")
+
+            choice = input("Enter the Number which you want to look: ")
+
+            if choice == "1":
+                pid = input("Patient ID: ")
+                name = input("Name: ")
+                age = int(input("Age: "))
+                gender = GP_Practice.get_gender_input()
+                if gender == "invalid value":
+                    print("Invalid gender, please enter male or female")
+                else:
+                    diagnosis = input("Diagnosis: ")
+                    date_Of_admission = input(
+                        "Date of Admission (YYYY-MM-DD):")
+
+                    patient = Patient(pid, name, age, gender, diagnosis,
+                                      date_Of_admission)
+                    gppractice.add_patient(patient)
+
+            elif choice == "2":
+                gppractice.view_all_patients()
+
+            elif choice == "3":
+                pid = input("Enter Patient ID: ")
+                gppractice.search_patient_by_id(pid)
+
+            elif choice == "4":
+                name = input("Enter Patient Name: ")
+                gppractice.search_patient_by_name(name)
+                
