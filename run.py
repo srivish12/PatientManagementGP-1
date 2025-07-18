@@ -10,7 +10,7 @@ class Patient:
         self.gender = gender
         self.diagnosis = diagnosis
         self.date_of_admission = date_of_admission
-        
+
     def __str__(self):
         return (
             f"ID: {self.patient_id}, Name: {self.name}, Age: {self.age}, "
@@ -19,19 +19,16 @@ class Patient:
         )
 
 
-"""
-* Patient registration
-
-* Viewing all patients
-
-* Searching patients by ID
-
-* Updating patient records
-
-* Deleting records
-* number of patient admitted and discharged to predict future trends
-
- """
+# * Patient registration
+#
+# * Viewing all patients
+#
+# * Searching patients by ID
+#
+# * Updating patient records
+#
+# * Deleting records
+# * number of patient admitted and discharged to predict future trends
 
 
 class GP_Practice:
@@ -134,9 +131,9 @@ def main():
                 try:
                     date_of_admission = datetime.strptime(
                         date_input, "%Y-%m-%d").date()
-
                 except ValueError:
                     print("Invalid date format. Please use YYYY-MM-DD.")
+                    continue
                 patient = Patient(pid, name, age, gender, diagnosis,
                                   date_of_admission)
                 gppractice.add_patient(patient)
@@ -157,7 +154,10 @@ def main():
             print("Leave field blank if no change is needed.")
             name = input("New Name: ")
             age = input("New Age: ")
-            gender = input("New Gender: ")
+            gender = gppractice.get_gender_input()
+            if gender == "invalid value":
+                print("Invalid gender, please enter male or female")
+                gender = None
             diagnosis = input("New Diagnosis: ")
             gppractice.update_patient(
                 pid,
@@ -172,9 +172,8 @@ def main():
             gppractice.delete_patient(pid)
 
         elif choice == "7":
-            gppractice.view_count = len(gppractice.patients)
             print(f"Total Number of patients Registered : "
-                  f"{gppractice.view_count}")
+                  f"{len(gppractice.patients)}")
 
         elif choice == "8":
             patient_counts = {}
