@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Patient:
     def __init__(self, patient_id, name, age, gender, diagnosis, dateOfAdmit):
         self.patient_id = patient_id
@@ -117,13 +120,18 @@ class GP_Practice:
                 pid = input("Patient ID: ")
                 name = input("Name: ")
                 age = int(input("Age: "))
-                gender = GP_Practice.get_gender_input()
+                gender = gppractice.get_gender_input()
                 if gender == "invalid value":
                     print("Invalid gender, please enter male or female")
                 else:
                     diagnosis = input("Diagnosis: ")
-                    date_Of_admission = input(
-                        "Date of Admission (YYYY-MM-DD):")
+                    date_input = input("Date of Admission (YYYY-MM-DD):")
+                    try:
+                        date_Of_admission = datetime.striptime(
+                            date_input, "%Y- %m -%d"
+                        ).date()
+                    except ValueError:
+                        print("Invalid date format. Please use YYYY-MM-DD.")
 
                     patient = Patient(pid, name, age, gender, diagnosis,
                                       date_Of_admission)
@@ -161,4 +169,19 @@ class GP_Practice:
 
             elif choice == "7":
                 gppractice.view_count = len(gppractice.patients)
-                print(f"Number of patients admitted: {gppractice.view_count}")
+                print(f"Total Number of patients Registered : "
+                      f"{gppractice.view_count}")
+
+            elif choice == "8":
+                patient_counts = {}
+
+                for patient in gppractice.patients.values():
+                    date = patient.date_of_admission
+                    if date in patient_counts:
+                        patient_counts[date] += 1
+                    else:
+                        patient_counts[date] = 1
+
+                print("Number of patients admitted per day:")
+                for date in patient_counts:
+                    print(f"{date}: {patient_counts[date]}")
