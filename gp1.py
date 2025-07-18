@@ -127,12 +127,12 @@ class GP_Practice:
                     diagnosis = input("Diagnosis: ")
                     date_input = input("Date of Admission (YYYY-MM-DD):")
                     try:
-                        date_Of_admission = datetime.striptime(
-                            date_input, "%Y- %m -%d"
+                        date_Of_admission = datetime.strptime(
+                            date_input, "%Y-%m-%d"
                         ).date()
                     except ValueError:
                         print("Invalid date format. Please use YYYY-MM-DD.")
-
+                        continue
                     patient = Patient(pid, name, age, gender, diagnosis,
                                       date_Of_admission)
                     gppractice.add_patient(patient)
