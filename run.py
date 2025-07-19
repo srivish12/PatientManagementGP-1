@@ -19,19 +19,22 @@ class Patient:
         )
 
 
-# * Patient registration
-#
-# * Viewing all patients
-#
-# * Searching patients by ID
-#
-# * Updating patient records
-#
-# * Deleting records
-# * number of patient admitted and discharged to predict future trends
+class GPPractice:
 
+    """
+ * Patient registration
 
-class GP_Practice:
+ * Viewing all patients
+
+ * Searching patients by ID
+
+ * Updating patient records
+
+ * Deleting records
+
+ * number of patient admitted and discharged to predict future trends
+
+    """
     def __init__(self):
         self.patients = {}
 
@@ -100,7 +103,7 @@ class GP_Practice:
 
 
 def main():
-    gppractice = GP_Practice()
+    gppractice = GPPractice()
 
     while True:
         print("\n---Patient Management System in GP ---")
@@ -114,8 +117,9 @@ def main():
         print("8. Number Of Patients Admitted per Day")
         print("9. Number Of Patients Admitted per Month")
         print("10. Exit")
+        print("--------------------------------")
 
-        choice = input("Enter the Number which you want to look: ")
+        choice = input("Enter the Number which you want to look: ").strip()
 
         if choice == "1":
             pid = input("Patient ID: ")
@@ -209,6 +213,8 @@ def main():
 
         else:
             print("Invalid choice. Try again.")
+
+        input("Press Enter to return to the main menu...")
 
 
 if __name__ == "__main__":
