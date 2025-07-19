@@ -98,6 +98,8 @@ class GPPractice:
             return "male"
         elif gender in ["female", "f"]:
             return "female"
+        elif not gender:
+            return "invalid value"
         else:
             return "invalid value"
 
@@ -123,8 +125,20 @@ def main():
 
         if choice == "1":
             pid = input("Patient ID: ")
+            if not pid:
+                print("Patient Id can not be empty")
+                input("enter to continue..")
+                continue
             name = input("Name: ")
-            age = int(input("Age: "))
+            if not name or name.isdigit():
+                print("Name can not be empty or can not be a number")
+                input("enter to continue..")
+                continue
+            age_input = input("Age: ").strip()
+            if not age_input.isdigit() or not age_input or int(age_input) <= 0:
+                print("age must be a positive number or can not be empty")
+                input("enter to continue..")
+                continue
             gender = gppractice.get_gender_input()
             if gender == "invalid value":
                 print("Invalid gender, please enter male or female")
@@ -138,7 +152,7 @@ def main():
                 except ValueError:
                     print("Invalid date format. Please use YYYY-MM-DD.")
                     continue
-                patient = Patient(pid, name, age, gender, diagnosis,
+                patient = Patient(pid, name, age_input, gender, diagnosis,
                                   date_of_admission)
                 gppractice.add_patient(patient)
 
