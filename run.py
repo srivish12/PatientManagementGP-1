@@ -108,7 +108,7 @@ def main():
     gppractice = GPPractice()
 
     while True:
-        print("\n---Patient Management System in GP ---")
+        print("\n---Patient Management System in GP Surgery---\n")
         print("1. Add Patient")
         print("2. View All Patients")
         print("3. Search Patient by ID")
@@ -202,10 +202,12 @@ def main():
                     patient_counts[date] += 1
                 else:
                     patient_counts[date] = 1
-
-            print("Number of patients admitted per day:")
-            for date in patient_counts:
-                print(f"{date}: {patient_counts[date]}")
+            if not patient_counts:
+                print("No patients were admitted on this day")
+            else:
+                print("Number of patients admitted per day:")
+                for date in patient_counts:
+                    print(f"{date}: {patient_counts[date]}")
 
         elif choice == "9":
             patient_counts = {}
@@ -217,9 +219,12 @@ def main():
                 else:
                     patient_counts[month] = 1
 
-            print("Number of patients admitted per month:")
-            for month in patient_counts:
-                print(f"{month}: {patient_counts[month]}")
+            if not patient_counts:
+                print("No patients were admitted in this month")
+            else:
+                print("Number of patients admitted per month:")
+                for month in sorted(patient_counts):
+                    print(f"{month}: {patient_counts[month]}")
 
         elif choice == "10":
             print("Exiting the Program!")
