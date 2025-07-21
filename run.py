@@ -21,20 +21,6 @@ class Patient:
 
 class GPPractice:
 
-    """
- * Patient registration
-
- * Viewing all patients
-
- * Searching patients by ID
-
- * Updating patient records
-
- * Deleting records
-
- * number of patient admitted and discharged to predict future trends
-
-    """
     def __init__(self):
         self.patients = {}
 
